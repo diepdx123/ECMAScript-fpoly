@@ -1,0 +1,35 @@
+<script>
+  let classRoom = [
+    "Đặng Xuân Điệp",
+    "Đặng Văn Nguyễn",
+    "Phạm Quang Khải",
+    "Điệp đẹp trai học giỏi quá",
+  ];
+
+  let hoTen = classRoom.map((item) => {
+    let fullName = item.split(" ");
+    return {
+      ho: fullName[0],
+      ten: fullName[1],
+    };
+  });
+
+  console.log(hoTen);
+
+  // cau 2
+  let newStudent = "Thêm Văn Tên";
+  let index = 2;
+
+  classRoom.splice(index, 0, newStudent);
+
+  console.log(classRoom);
+
+  // cau 3
+  let studentToRemove = "Đặng Xuân Điệp";
+
+  classRoom = classRoom.filter((student) => student !== studentToRemove);
+
+  console.log(classRoom);
+
+  // cau 4
+</script>

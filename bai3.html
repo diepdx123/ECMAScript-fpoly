@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="myForm">
+      <label for="string">String</label>
+      <input type="text" name="string" id="string" placeholder="String" />
+      <br />
+      <button type="button" id="convert">Convert</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      const convertToCamelCase = () => {
+        const input = document.getElementById("string").value;
+        const cleanedString = input.replace(/[^\w\s]/gi, "");
+
+        const words = cleanedString.split(" ");
+        const camelCase = words
+          .map((word, index) => {
+            if (index === 0) {
+              return word.toLowerCase();
+            } else {
+              return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+            }
+          })
+          .join("");
+
+        document.getElementById("result").innerHTML = camelCase;
+      };
+
+      document
+        .getElementById("convert")
+        .addEventListener("click", convertToCamelCase);
+    </script>
+  </body>
+</html>

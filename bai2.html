@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management</title>
+    <style type="text/css" media="screen">
+      .user_item {
+        color: green;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="id">ID:</label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="Enter ID"
+        readonly
+      /><br /><br />
+
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter Name"
+      /><br /><br />
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option></select
+      ><br /><br />
+
+      <button type="button" id="addButton">Add</button>
+    </form>
+
+    <ul id="target"></ul>
+
+    <script>
+      let users = [
+        { id: 1, name: "James Smith", gender: 1 },
+        { id: 2, name: "Isla Brown", gender: 2 },
+        { id: 3, name: "Amelia Davies", gender: 2 },
+        { id: 4, name: "Jacob Evans", gender: 1 },
+      ];
+      let target = document.querySelector("#target");
+      let nextId = users.length + 1;
+
+      function renderUsers() {
+        target.innerHTML = "";
+        users.forEach(function (user) {
+          let li = document.createElement("li");
+          let gender = user.gender === 1 ? "male" : "female";
+          li.textContent = `${user.id}. ${user.name}-${gender}`;
+          li.classList.add("user_item");
+          target.appendChild(li);
+        });
+      }
+
+      renderUsers();
+
+      let addButton = document.getElementById("addButton");
+      addButton.addEventListener("click", function () {
+        let nameInput = document.getElementById("name");
+        let genderSelect = document.getElementById("gender");
+
+        let name = nameInput.value;
+        let gender = genderSelect.value;
+
+        let user = {
+          id: nextId,
+          name: name,
+          gender: gender === "male" ? 1 : 2,
+        };
+
+        users.push(user);
+        nextId++;
+
+        nameInput.value = "";
+
+        renderUsers();
+        document.getElementById("id").value = nextId;
+      });
+    </script>
+  </body>
+</html>
+
+<script>
+  console.log(users[5]);
+</script>
